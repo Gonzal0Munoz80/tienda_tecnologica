@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ producto.nombre }} | Tienda Tecnológica</title>
+    <link rel="stylesheet" href="{% static 'catalogo/css/inicio.css' %}">
+</head>
+<body>
+    <header class="topbar">
+        <nav class="navigation" aria-label="Navegación principal">
+            <a class="brand" href="{% url 'inicio' %}">Tienda<span>Tec</span></a>
+            <a class="nav-link" href="{% url 'inicio' %}#productos">Productos</a>
+        </nav>
+    </header>
+
+    <main class="catalog">
+        <article class="product-card">
+            <div class="product-art" aria-hidden="true">✦</div>
+            <div class="product-info">
+                {% if producto.categorias.all %}
+                    <div class="category-list">
+                        {% for categoria in producto.categorias.all %}
+                            <span class="category">{{ categoria.nombre }}</span>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                <h1>{{ producto.nombre }}</h1>
+                <p class="description">{{ producto.descripcion }}</p>
+                <p class="price">$ {{ producto.precio|floatformat:0 }}</p>
+                <p class="description">Código de producto: {{ producto.id }}</p>
+                <a class="button" href="{% url 'inicio' %}#productos">Volver al catálogo</a>
+            </div>
+        </article>
+    </main>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Encuentra tecnología para tu día a día en nuestra tienda.">
+    <title>Tienda Tecnológica | Tecnología para todos los días</title>
+    <link rel="stylesheet" href="{% static 'catalogo/css/inicio.css' %}">
+</head>
+<body>
+    <header class="topbar">
+        <nav class="navigation" aria-label="Navegación principal">
+            <a class="brand" href="{% url 'inicio' %}">Tienda<span>Tec</span></a>
+            <a class="nav-link" href="#productos">Productos</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <div class="hero-copy">
+                    <p class="eyebrow">Tecnología para todos los días</p>
+                    <h1>Lo que necesitas, listo para conectar.</h1>
+                    <p>Explora nuestro catálogo y encuentra tecnología pensada para acompañarte en cada proyecto.</p>
+                    <a class="button" href="#productos">Ver productos</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="catalog" id="productos" aria-labelledby="catalog-title">
+            <div class="section-heading">
+                <div>
+                    <h2 id="catalog-title">Nuestro catálogo</h2>
+                    <p>Productos disponibles en la tienda</p>
+                </div>
+            </div>
+
+            {% if productos %}
+                <div class="product-grid">
+                    {% for producto in productos %}
+                        <article class="product-card">
+                            <div class="product-art" aria-hidden="true">✦</div>
+                            <div class="product-info">
+                                {% if producto.categorias.all %}
+                                    <div class="category-list">
+                                        {% for categoria in producto.categorias.all %}
+                                            <span class="category">{{ categoria.nombre }}</span>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                                <h3>{{ producto.nombre }}</h3>
+                                <p class="description">{{ producto.descripcion|default:"Consulta los detalles de este producto." }}</p>
+                                <p class="price">$ {{ producto.precio|floatformat:0 }}</p>
+                                <a class="button" href="{% url 'detalle_producto' producto.id %}">Ver producto</a>
+                            </div>
+                        </article>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="empty-state">
+                    <h3>Aún no hay productos</h3>
+                    <p>Estamos preparando el catálogo. Vuelve pronto para descubrir las novedades.</p>
+                </div>
+            {% endif %}
+        </section>
+    </main>
+
+    <footer>
+        &copy; {% now "Y" %} Tienda Tecnológica. Todos los derechos reservados.
+    </footer>
+</body>
+</html>

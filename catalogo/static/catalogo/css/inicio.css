@@ -1,0 +1,248 @@
+:root {
+    color-scheme: light;
+    --ink: #172033;
+    --muted: #64748b;
+    --brand: #5b5bd6;
+    --brand-dark: #4545b5;
+    --surface: #ffffff;
+    --background: #f5f7fb;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background: var(--background);
+    color: var(--ink);
+    font-family: Inter, "Segoe UI", Arial, sans-serif;
+    line-height: 1.6;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.topbar {
+    background: var(--surface);
+    border-bottom: 1px solid #e7eaf1;
+}
+
+.navigation {
+    width: min(1120px, calc(100% - 40px));
+    min-height: 76px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.brand {
+    font-size: 1.15rem;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+}
+
+.brand span {
+    color: var(--brand);
+}
+
+.nav-link {
+    color: var(--muted);
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.hero {
+    overflow: hidden;
+    background:
+        radial-gradient(ellipse at 85% 15%, rgba(150, 143, 255, 0.45), transparent 32%),
+        linear-gradient(125deg, #171b3c, #353687 58%, #5b5bd6);
+    color: white;
+}
+
+.hero-content {
+    width: min(1120px, calc(100% - 40px));
+    min-height: 340px;
+    margin: 0 auto;
+    padding: 64px 0;
+    display: flex;
+    align-items: center;
+}
+
+.hero-copy {
+    max-width: 660px;
+}
+
+.eyebrow {
+    margin: 0 0 12px;
+    color: #c9c8ff;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+}
+
+h1 {
+    margin: 0;
+    font-size: clamp(2.4rem, 6vw, 4.4rem);
+    letter-spacing: -0.055em;
+    line-height: 1.08;
+}
+
+.hero-copy > p:not(.eyebrow) {
+    max-width: 510px;
+    margin: 20px 0 28px;
+    color: #e3e5ff;
+    font-size: 1.08rem;
+}
+
+.button {
+    display: inline-flex;
+    min-height: 48px;
+    align-items: center;
+    justify-content: center;
+    padding: 0 22px;
+    border-radius: 9px;
+    background: white;
+    color: var(--brand-dark);
+    font-weight: 750;
+}
+
+.catalog {
+    width: min(1120px, calc(100% - 40px));
+    margin: 0 auto;
+    padding: 64px 0 78px;
+}
+
+.section-heading {
+    margin-bottom: 26px;
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.section-heading h2 {
+    margin: 0;
+    font-size: clamp(1.7rem, 4vw, 2.25rem);
+    letter-spacing: -0.04em;
+}
+
+.section-heading p {
+    margin: 5px 0 0;
+    color: var(--muted);
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+    gap: 22px;
+}
+
+.product-card {
+    overflow: hidden;
+    border: 1px solid #e8ebf2;
+    border-radius: 15px;
+    background: var(--surface);
+    box-shadow: 0 8px 26px rgba(27, 37, 71, 0.05);
+}
+
+.product-art {
+    min-height: 150px;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(145deg, #ededff, #f7f8ff);
+    color: var(--brand);
+    font-size: 2.7rem;
+}
+
+.product-info {
+    padding: 20px;
+}
+
+.category-list {
+    margin-bottom: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+}
+
+.category {
+    padding: 3px 9px;
+    border-radius: 99px;
+    background: #f0efff;
+    color: var(--brand-dark);
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.product-info h3 {
+    margin: 0;
+    font-size: 1.15rem;
+    letter-spacing: -0.02em;
+}
+
+.description {
+    min-height: 48px;
+    margin: 8px 0 18px;
+    color: var(--muted);
+    font-size: 0.92rem;
+}
+
+.price {
+    margin: 0;
+    color: var(--brand-dark);
+    font-size: 1.25rem;
+    font-weight: 800;
+}
+
+.empty-state {
+    padding: 42px 20px;
+    border: 1px dashed #cbd2e1;
+    border-radius: 15px;
+    background: var(--surface);
+    text-align: center;
+}
+
+.empty-state h3 {
+    margin: 0 0 6px;
+}
+
+.empty-state p {
+    margin: 0;
+    color: var(--muted);
+}
+
+footer {
+    padding: 24px 20px;
+    border-top: 1px solid #e7eaf1;
+    background: var(--surface);
+    color: var(--muted);
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 560px) {
+    .navigation,
+    .hero-content,
+    .catalog {
+        width: min(100% - 32px, 1120px);
+    }
+
+    .hero-content {
+        min-height: 300px;
+        padding: 52px 0;
+    }
+
+    .catalog {
+        padding: 48px 0 58px;
+    }
+}
