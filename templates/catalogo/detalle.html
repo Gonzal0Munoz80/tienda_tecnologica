@@ -17,7 +17,11 @@
 
     <main class="catalog">
         <article class="product-card">
-            <div class="product-art" aria-hidden="true">✦</div>
+            {% if producto.miniatura %}
+                <img class="product-image product-image-detail{% if producto.nombre == 'PC RTX' %} product-image-rtx-detail{% endif %}" src="{{ producto.miniatura.url }}" alt="{{ producto.nombre }}">
+            {% else %}
+                <div class="product-art" aria-hidden="true">✦</div>
+            {% endif %}
             <div class="product-info">
                 {% if producto.categorias.all %}
                     <div class="category-list">

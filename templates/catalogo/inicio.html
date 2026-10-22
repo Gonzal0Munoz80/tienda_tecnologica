@@ -40,7 +40,11 @@
                 <div class="product-grid">
                     {% for producto in productos %}
                         <article class="product-card">
-                            <div class="product-art" aria-hidden="true">✦</div>
+                            {% if producto.miniatura %}
+                                <img class="product-image{% if producto.nombre == 'PC RTX' %} product-image-rtx{% endif %}" src="{{ producto.miniatura.url }}" alt="{{ producto.nombre }}">
+                            {% else %}
+                                <div class="product-art" aria-hidden="true">✦</div>
+                            {% endif %}
                             <div class="product-info">
                                 {% if producto.categorias.all %}
                                     <div class="category-list">
@@ -52,7 +56,7 @@
                                 <h3>{{ producto.nombre }}</h3>
                                 <p class="description">{{ producto.descripcion|default:"Consulta los detalles de este producto." }}</p>
                                 <p class="price">$ {{ producto.precio|floatformat:0 }}</p>
-                                <a class="button" href="{% url 'detalle_producto' producto.id %}">Ver producto</a>
+                                <a class="button" href="{% url 'detalle_producto' producto.nombre %}">Ver producto</a>
                             </div>
                         </article>
                     {% endfor %}

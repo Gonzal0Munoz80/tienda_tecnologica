@@ -1,3 +1,4 @@
+from django.http import Http404
 from django.shortcuts import render, get_object_or_404
 
 from .models import Catalogo
@@ -16,9 +17,13 @@ def inicio(request):
 
     return render(request, "catalogo/inicio.html", {"productos": productos})
 
-def detalle_producto(request, producto_id):
-    producto = get_object_or_404(
-        Catalogo.objects.prefetch_related("categorias"),
-        pk=producto_id,
-    )
+def detalle_producto(request, producto_nombre):
+    try:
+        producto = get_object_or_404(
+            Catalogo.objects.prefetch_related("categorias"),
+            nombre=producto_nombre,
+        )
+    except Http404:
+        return render(request, "404.html", status=404)
+
     return render(request, "catalogo/detalle.html", {"producto": producto})
