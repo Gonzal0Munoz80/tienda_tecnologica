@@ -1,6 +1,8 @@
-from django.utils.html import format_html
 from django.contrib import admin
-from .models import Catalogo, Categoria
+from django.utils.html import format_html
+
+from .models import Catalogo, Categoria, ventas
+
 # Register your models here.
 admin.site.site_header = "Administración de la Tienda Tecnológica"
 
@@ -22,7 +24,7 @@ class CatalogoAdmin(admin.ModelAdmin):
     def vista_previa_miniatura(self, obj):
         if obj and obj.miniatura:
             return format_html(
-                '<img src="{}" style="max-width: 300px; max-height: 300px;">',
+                '<img src="{}" style="max-width: 500px; max-height: 200px;">',
                 obj.miniatura.url,
             )
         return "No hay imagen disponible"
@@ -34,3 +36,11 @@ class CategoriaAdmin(admin.ModelAdmin):
     search_fields = ('nombre', 'descripcion')
     list_filter = ('foreign_key',)
     ordering = ('nombre',)
+
+
+@admin.register(ventas)
+class VentasAdmin(admin.ModelAdmin):
+    list_display = ('id', 'nombre', 'email', 'fecha', 'personas', 'comentario', 'creada')
+    search_fields = ('nombre', 'email', 'comentario')
+    list_filter = ('fecha', 'creada')
+    ordering = ('-fecha',)
